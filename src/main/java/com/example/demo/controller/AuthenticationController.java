@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.User;
+import com.example.demo.model.UserTable;
 import com.example.demo.service.UserServiceImpl;
 
 import io.jsonwebtoken.Jwts;
@@ -30,10 +30,10 @@ public class AuthenticationController
 	private UserServiceImpl userImpl;
 	
 	@PostMapping("/addUser")
-	public ResponseEntity<?> addUser(@RequestBody User user)
+	public ResponseEntity<?> addUser(@RequestBody UserTable user)
 	{if(userImpl.addUser(user)!=null)
 	{
-		return new ResponseEntity<User>(user, HttpStatus.CREATED);
+		return new ResponseEntity<UserTable>(user, HttpStatus.CREATED);
 	}
 	return new ResponseEntity<String>("Data not inserted", HttpStatus.INTERNAL_SERVER_ERROR);
 		
@@ -65,7 +65,7 @@ public class AuthenticationController
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<?> doLogin(@RequestBody User user)
+	public ResponseEntity<?> doLogin(@RequestBody UserTable user)
 	{
 		try
 		{
