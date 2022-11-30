@@ -9,60 +9,37 @@ import com.example.demo.model.UserTable;
 import com.example.demo.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService
-{
+public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Override
 	public List<UserTable> getAllUsers() {
 		List<UserTable> userlist = userRepo.findAll();
-		if(userlist !=null && userlist.size()>0)
-		{
+		if (userlist != null && userlist.size() > 0) {
 			return userlist;
-		}
-		else
+		} else
 			return null;
 	}
 
 	@Override
-	public UserTable addUser(UserTable user) 
-	{
-		if(user!=null)
-		{
-			return userRepo.saveAndFlush(user);
-		}
-		else
+	public UserTable addUser(UserTable user) {
+		UserTable u = userRepo.save(user);
+
+		if (u != null) {
+			return user;
+		} else {
 			return null;
-	
+		}
 	}
 
 	@Override
-	public boolean validateUser(String username, String password) 
-	{
+	public boolean validateUser(String username, String password) {
 		UserTable user = userRepo.validateUser(username, password);
-		if(user!=null)
-		{
+		if (user != null) {
 			return true;
-		}
-		else
+		} else
 			return false;
 	}
 
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
