@@ -43,7 +43,5 @@ public class UserServiceImpl implements UserService {
 		} else
 			return false;
 	}
-	public void printN() {
-		System.out.println("new code ");
-	}
+	
 }
