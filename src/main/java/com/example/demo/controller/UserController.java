@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.User;
+import com.example.demo.model.UserTable;
 import com.example.demo.service.UserService;
 
 @RestController
@@ -22,10 +22,10 @@ public class UserController
 	@GetMapping("/getAllUsers") // this will be accessible only if user logs in successfully
 	public ResponseEntity<?> getAllUsers()
 	{
-		List<User> userlist = userService.getAllUsers();
+		List<UserTable> userlist = userService.getAllUsers();
 		if(userlist!=null)
 		{
-			return new ResponseEntity<List<User>>(userlist, HttpStatus.OK);
+			return new ResponseEntity<List<UserTable>>(userlist, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>("User List is empty", HttpStatus.NO_CONTENT);
 	}
