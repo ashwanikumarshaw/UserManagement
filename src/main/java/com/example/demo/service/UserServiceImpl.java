@@ -9,60 +9,39 @@ import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService
-{
+public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Override
 	public List<User> getAllUsers() {
 		List<User> userlist = userRepo.findAll();
-		if(userlist !=null && userlist.size()>0)
-		{
+		if (userlist != null && userlist.size() > 0) {
 			return userlist;
-		}
-		else
+		} else
 			return null;
 	}
 
 	@Override
-	public User addUser(User user) 
-	{
-		if(user!=null)
-		{
+	public User addUser(User user) {
+		if (user != null) {
 			return userRepo.saveAndFlush(user);
-		}
-		else
+		} else
 			return null;
-	
+
 	}
 
 	@Override
-	public boolean validateUser(String username, String password) 
-	{
+	public boolean validateUser(String username, String password) {
 		User user = userRepo.validateUser(username, password);
-		if(user!=null)
-		{
+		if (user != null) {
 			return true;
-		}
-		else
+		} else
 			return false;
 	}
 
-	
+	public void printN() {
+		System.out.println("new code ");
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
